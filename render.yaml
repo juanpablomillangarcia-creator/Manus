@@ -1,0 +1,14 @@
+# Blueprint de Render: crea el servicio automáticamente al conectar el repo
+# (Render → New → Blueprint → seleccionar este repositorio).
+services:
+  - type: web
+    name: motor-campanas
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
